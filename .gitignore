@@ -1,0 +1,37 @@
+# Entorno virtual
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# VS Code
+.vscode/
+
+# Variables de entorno
+.env
+
+# Archivos de logs
+*.log
+
+# Archivos temporales
+*.tmp
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Pytest
+.pytest_cache/
+
+# Cobertura
+.coverage
+htmlcov/
+
+# Distribución
+build/
+dist/
+*.egg-info/
