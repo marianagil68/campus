@@ -1,0 +1,75 @@
+{% extends "layouts/base.html" %}
+
+{% block titulo %}
+Campus
+{% endblock %}
+
+{% block contenido %}
+
+<div class="mb-4">
+    <h1 class="h3">Bienvenido a Campus</h1>
+    <p class="text-muted mb-0">
+        Plataforma de capacitación para Auxiliares de la Justicia.
+    </p>
+</div>
+
+<div class="row mb-4">
+
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="h5">Mis cursos</h2>
+                <p class="text-muted">Accedé rápidamente a tus capacitaciones.</p>
+                <a href="#" class="btn btn-primary btn-sm">Ver cursos</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="h5">Materiales</h2>
+                <p class="text-muted">Consultá videos, apuntes y documentos.</p>
+                <a href="#" class="btn btn-outline-primary btn-sm">Ver materiales</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="h5">Certificados</h2>
+                <p class="text-muted">Descargá tus certificados disponibles.</p>
+                <a href="#" class="btn btn-outline-primary btn-sm">Ver certificados</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<h2 class="h4 mb-3">Cursos disponibles</h2>
+
+<div class="row">
+
+    {% for curso in cursos %}
+
+    <div class="col-md-6 mb-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <h3 class="h5">{{ curso.titulo }}</h3>
+
+                <p class="text-muted">
+                    {{ curso.descripcion }}
+                </p>
+
+                <a href="/curso/{{ curso.cursoid }}" class="btn btn-primary btn-sm">
+                    Ingresar al curso
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+{% endblock %}

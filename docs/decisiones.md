@@ -31,3 +31,47 @@ Las claves foráneas tendrán el mismo nombre que la clave primaria referenciada
 Se utilizará Docker para ejecutar PostgreSQL.
 
 Visual Studio Code será el entorno de desarrollo.
+
+# Fase 3 - Desarrollo del Backend
+
+## Paso 3.1 - Creación del entorno virtual
+
+### Objetivo
+
+Crear un entorno virtual independiente para administrar las dependencias del proyecto.
+
+### Comandos ejecutados
+
+Crear el entorno virtual:
+
+```powershell
+python -m venv venv
+```
+
+### Configuración de Visual Studio Code
+
+Al detectar la creación del entorno virtual, Visual Studio Code preguntó si debía utilizar dicho entorno como intérprete de Python para el proyecto.
+
+Se seleccionó la opción:
+
+```
+Sí
+```
+
+De esta manera, todas las ejecuciones, depuración e instalación de dependencias se realizarán utilizando el entorno virtual del proyecto.
+
+Activarlo en PowerShell:
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+### Resultado esperado
+
+La terminal muestra el prefijo:
+
+```text
+(venv)
+```
+
+indicando que todas las dependencias que se instalen a partir de ese momento pertenecerán exclusivamente al proyecto.
