@@ -404,3 +404,148 @@ app.run(debug=True)
 ```
 
 para reiniciar automáticamente la aplicación y mostrar información detallada en caso de error.
+
+## Paso 3.4 - Primera versión de la arquitectura del backend
+
+### Objetivo
+
+Organizar el proyecto utilizando una arquitectura por capas y separar las responsabilidades de la aplicación.
+
+### Cambios realizados
+
+- Se creó `app.py` como punto de entrada de la aplicación.
+- Se implementó la primera versión de la arquitectura:
+  - Controllers
+  - Services
+  - Repositories
+- Se creó el primer controlador (`HomeController`).
+- Se creó el primer servicio (`CursoService`).
+- Se creó el primer repositorio (`CursoRepository`).
+- El repositorio devuelve datos simulados para desacoplar el frontend de la base de datos.
+- Se incorporó Jinja2 para generar dinámicamente las tarjetas de cursos.
+- Se reorganizaron las carpetas `templates` y `static` en la raíz del proyecto.
+- Se creó un layout base reutilizable con Bootstrap.
+
+### Commit realizado
+
+```text
+Fase 3 - Implementación de la arquitectura inicial del backend
+```
+
+## Paso 4.1 - Preparación de la capa de acceso a datos
+
+### Objetivo
+
+Preparar la infraestructura para conectar la aplicación con PostgreSQL utilizando SQLAlchemy.
+
+### Actividades realizadas
+
+- Se evaluaron distintas alternativas para el acceso a datos.
+- Se descartó el uso directo de `psycopg2`.
+- Se decidió utilizar SQLAlchemy Core junto con el driver `psycopg`.
+- Se instaló SQLAlchemy.
+- Se instaló el driver `psycopg` con soporte binario.
+- Se creó la clase `Database`.
+- Se implementó el primer método de prueba de conexión (`SELECT 1`).
+
+### Comandos ejecutados
+
+```powershell
+pip uninstall psycopg2-binary
+```
+
+```powershell
+pip install sqlalchemy
+```
+
+```powershell
+pip install "psycopg[binary]"
+```
+
+```powershell
+pip freeze > requirements.txt
+```
+
+### Verificación
+
+Se creó el módulo:
+
+```
+tests/test_database.py
+```
+
+y se ejecutó mediante:
+
+```powershell
+python -m tests.test_database
+```
+
+Obteniendo como resultado:
+
+```
+Resultado: 1
+```
+
+confirmando la conexión correcta con PostgreSQL.
+
+## Paso 4.2 - Configuración del acceso a PostgreSQL
+
+### Objetivo
+
+Configurar el proyecto para conectarse a PostgreSQL de forma segura y desacoplada del código fuente.
+
+### Actividades realizadas
+
+- Se decidió no almacenar la cadena de conexión completa en el código.
+- Se creó un archivo `.env` para almacenar la configuración de la base de datos.
+- Se instalaron las bibliotecas necesarias para administrar la configuración y la conexión a PostgreSQL.
+- Se creó la clase `Config` para centralizar la lectura de variables de entorno.
+- Se modificó la clase `Database` para construir la URL de conexión utilizando `sqlalchemy.engine.URL.create()`.
+- Se verificó correctamente la conexión ejecutando `SELECT 1`.
+
+### Archivo `.env`
+
+```env
+DB_DRIVER=postgresql+psycopg
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=campus
+DB_USER=campus
+DB_PASSWORD=********
+```
+
+> **Nota:** En la documentación no se almacenan credenciales reales. Cada desarrollador deberá completar los valores correspondientes en su entorno.
+
+### Comandos ejecutados
+
+```powershell
+pip install python-dotenv
+```
+
+```powershell
+pip install sqlalchemy
+```
+
+```powershell
+pip install "psycopg[binary]"
+```
+
+```powershell
+pip freeze > requirements.txt
+```
+
+### Prueba realizada
+
+Se ejecutó el módulo:
+
+```powershell
+python -m tests.test_database
+```
+
+Resultado esperado:
+
+```text
+Resultado: 1
+```
+
+confirmando la conectividad con PostgreSQL.
